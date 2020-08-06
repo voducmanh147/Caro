@@ -1089,38 +1089,38 @@ public class May implements Player {
 	}
 
 //
-	public static void main(String[] args) {
-		int[] x2 = { 2, 2, 2, 0, 0 };
-		Board ha = new Board(15, 15);
+//	public static void main(String[] args) {
+//		int[] x2 = { 2, 2, 2, 0, 0 };
+//		Board ha = new Board(15, 15);
+////
+//		ha.setPosition(5, 2, 1);
+//		ha.setPosition(5, 5, 2);
+//		ha.setPosition(4, 4, 2);
+////		ha.setPosition(7, 7, 2);
+////		ha.setPosition(6, 6, 2);
+//		ha.setPosition(5, 6, 1);
+//		ha.setPosition(4, 5, 1);
+////		ha.setPosition(7, 8, 1);
+////		ha.setPosition(6, 7, 1);
 //
-		ha.setPosition(5, 2, 1);
-		ha.setPosition(5, 5, 2);
-		ha.setPosition(4, 4, 2);
-//		ha.setPosition(7, 7, 2);
-//		ha.setPosition(6, 6, 2);
-		ha.setPosition(5, 6, 1);
-		ha.setPosition(4, 5, 1);
-//		ha.setPosition(7, 8, 1);
-//		ha.setPosition(6, 7, 1);
-
-//		ha.setPosition(7, 4, 1);
-//		ha.setPosition(8, 4, 1);
-//		ha.setPosition(7, 5, 1);
-//		ha.setPosition(8, 5, 2);
-//		ha.setPosition(9, 5, 2);
-//		ha.setPosition(9, 4, 1);
-//		ha.setPosition(10, 4, 1);
-	
-
-//		Point p = new Point();
-
-		System.out.println(ha.toString());
-		May may = new May(ha);
-		may.Heucristis(ha);
-//		may.manh(7,ha,1);
-		may.AI(2);
-//		may.minmax(1);
-
-	}
+////		ha.setPosition(7, 4, 1);
+////		ha.setPosition(8, 4, 1);
+////		ha.setPosition(7, 5, 1);
+////		ha.setPosition(8, 5, 2);
+////		ha.setPosition(9, 5, 2);
+////		ha.setPosition(9, 4, 1);
+////		ha.setPosition(10, 4, 1);
+//	
+//
+////		Point p = new Point();
+//
+//		System.out.println(ha.toString());
+//		May may = new May(ha);
+//		may.Heucristis(ha);
+////		may.manh(7,ha,1);
+//		may.AI(2);
+////		may.minmax(1);
+//
+//	}
 
 }

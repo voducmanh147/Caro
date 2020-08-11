@@ -161,6 +161,7 @@ public class Controller {
 		} else {
 			if (getPlayerID() == 1) {
 				if (getBoardState().getPosition(x, y) == 0) {
+					
 					move(x, y, 1, a);
 					setPlayerID(2);
 				}

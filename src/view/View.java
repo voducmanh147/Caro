@@ -186,7 +186,7 @@ public class View implements EventHandler<ActionEvent> {
 
 	}
 
-	int d = 0;
+	boolean d;
 
 	public void handle(ActionEvent e) {
 		if (e.getSource() == btnExit) {
@@ -194,18 +194,18 @@ public class View implements EventHandler<ActionEvent> {
 		}
 		if (e.getSource() == btnHuman) {
 			replayHuman();
-			d =1;
+			d = true;
 		}
 		if (e.getSource() == btnBoss) {
 			replayBoss();
-			d = 2;
+			d = false;
 		}
 		if (e.getSource() == btnUndo) {
 
-			if (d == 1) {
+			if (d == true) {
 				controller.undo(arrayButtonChess);
 			}
-			if (d == 2) {
+			if (d == false) {
 				controller.undoBoss(arrayButtonChess);
 			}
 		}
@@ -228,7 +228,7 @@ public class View implements EventHandler<ActionEvent> {
 		controller.setPlayer(new May(new Board(WIDTH_BOARD, HEIGHT_BOARD)));
 		controller.setPlayerID(1);
 		controller.reset(arrayButtonChess);
-		gameMode();
+		controller.move(WIDTH_BOARD / 2 - 1, HEIGHT_BOARD / 2, 2, arrayButtonChess);
 	
 	}
 
@@ -241,15 +241,15 @@ public class View implements EventHandler<ActionEvent> {
 		alert.showAndWait();
 	}
 	public void gameMode() {
-		Alert gameMode = new Alert(AlertType.CONFIRMATION);
-		gameMode.setTitle("Chọn người chơi trước");
-		gameMode.setHeaderText("Bạn có muốn chơi trước không ?");
-		Optional<ButtonType> result = gameMode.showAndWait();
-		if (result.get() == ButtonType.CANCEL) {
+//		Alert gameMode = new Alert(AlertType.CONFIRMATION);
+//		gameMode.setTitle("Chọn người chơi trước");
+//		gameMode.setHeaderText("Bạn có muốn chơi trước không ?");
+//		Optional<ButtonType> result = gameMode.showAndWait();
+//		if (result.get() == ButtonType.CANCEL) {
 			controller.move(WIDTH_BOARD / 2 - 1, HEIGHT_BOARD / 2, 2, arrayButtonChess);
-			controller.setPlayerID(1);
-		} else {
-			controller.setPlayerID(1);
-		}
+//			controller.setPlayerID(1);
+//		} else {
+//			controller.setPlayerID(1);
+//		}
 	}
 }

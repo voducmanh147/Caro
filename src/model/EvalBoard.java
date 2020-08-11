@@ -19,9 +19,7 @@ public class EvalBoard {
 				EBoard[r][c] = 0;
 	}
 
-	public void setPosition(int x, int y, int diem) {
-		EBoard[x][y] = diem;
-	}
+	
 	public Point MaxPos() {
 		int Max = 0; // diem max 
 		Point p = new Point();
@@ -54,4 +52,7 @@ public class EvalBoard {
 	public int getPosition(int x, int y) {
 			return EBoard[x][y];
 		}
+	public void setPosition(int x, int y, int player) {
+		EBoard[x][y] = player;
+	}
 }

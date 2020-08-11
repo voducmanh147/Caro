@@ -979,101 +979,101 @@ public class May implements Player {
 		return temp;
 	}
 
-//	public int minimax(int depth, Board board, int player) {
-//		int temp = 0;
-//		if (depth == 0) {
-//			Heucristis(board);
-//		}
-//		if (player == 1) {
-//			temp = Integer.MAX_VALUE;
-//			for (int i = 0; i < board.width; i++) {
-//				for (int j = 0; j < board.height; j++) {
-//					if (board.getPosition(i, j) == 0) {
-//						Board ebBoard = new Board(board.height, board.width);
-//						for (int k = 0; k < ebBoard.width; k++) {
-//							System.out.println();
-//							for (int k2 = 0; k2 < ebBoard.height; k2++) {
-//								ebBoard.setPosition(k, k2, board.getPosition(i, j));
-//								System.out.print(ebBoard);
-//							}
-//						}
-//
-//						ebBoard.setPosition(i, j, 1);
-//						int value = minimax(depth- 1, board	, 2);
-//						if (temp > value) {
-//							temp = value;
-//							goPoint.setX(i);
-//							goPoint.setY(j);
-//
-//						}
-//					}
-//				}
-//
-//			}
-//		}
-//		if (player == 2){
-//			temp = Integer.MIN_VALUE;
-//			for (int i = 0; i < board.width; i++) {
-//				for (int j = 0; j < board.height; j++) {
-//					if (board.getPosition(i, j) == 0) {
-//
-//						Board ebBoard = new Board(board.height, board.width);
-//						for (int k = 0; k < ebBoard.width; k++) {
-//							System.out.println();
-//							for (int k2 = 0; k2 < ebBoard.height; k2++) {
-//								ebBoard.setPosition(k, k2, board.getPosition(i, j));
-//								System.out.print(ebBoard);
-//							}
-//						}
-//						ebBoard.setPosition(i, j, 2);
-//						int value = minimax(depth - 1, ebBoard, 1);
-//						if (temp < value) {
-//							temp = value;
-//							goPoint.setX(i);
-//							goPoint.setY(j);
-//
-//						}
-//					}
-//				}
-//
-//			}
-//		}
-//
-//		return temp;
-//
-//	}
 	public int minimax(int depth, Board board, int player) {
-		Point p = new Point();
 		int temp = 0;
 		if (depth == 0) {
 			Heucristis(board);
 		}
 		if (player == 1) {
 			temp = Integer.MAX_VALUE;
-			minmax(1, board);
-			int value = minimax(depth - 1, board, 2);
-			if (temp > value) {
-				temp = value;
-				p = goPoint;
-			}
+			for (int i = 0; i < board.width; i++) {
+				for (int j = 0; j < board.height; j++) {
+					if (board.getPosition(i, j) == 0) {
+						Board ebBoard = new Board(board.height, board.width);
+						for (int k = 0; k < ebBoard.width; k++) {
+							System.out.println();
+							for (int k2 = 0; k2 < ebBoard.height; k2++) {
+								ebBoard.setPosition(k, k2, board.getPosition(i, j));
+								System.out.print(ebBoard);
+							}
+						}
+
+						ebBoard.setPosition(i, j, 1);
+						int value = minimax(depth- 1, board	, 2);
+						if (temp > value) {
+							temp = value;
+							goPoint.setX(i);
+							goPoint.setY(j);
+
+						}
+					}
+				}
 
 			}
+		}
 		if (player == 2){
-			
 			temp = Integer.MIN_VALUE;
-			minmax(2, board);
-			int value = minimax(depth - 1, board, 1);
-			if (temp < value) {
-				temp = value;
-				p = goPoint;
-			}
+			for (int i = 0; i < board.width; i++) {
+				for (int j = 0; j < board.height; j++) {
+					if (board.getPosition(i, j) == 0) {
 
-			
+						Board ebBoard = new Board(board.height, board.width);
+						for (int k = 0; k < ebBoard.width; k++) {
+							System.out.println();
+							for (int k2 = 0; k2 < ebBoard.height; k2++) {
+								ebBoard.setPosition(k, k2, board.getPosition(i, j));
+								System.out.print(ebBoard);
+							}
+						}
+						ebBoard.setPosition(i, j, 2);
+						int value = minimax(depth - 1, ebBoard, 1);
+						if (temp < value) {
+							temp = value;
+							goPoint.setX(i);
+							goPoint.setY(j);
+
+						}
+					}
+				}
+
+			}
 		}
 
 		return temp;
 
 	}
+//	public int minimax(int depth, Board board, int player) {
+//		Point p = new Point();
+//		int temp = 0;
+//		if (depth == 0) {
+//			Heucristis(board);
+//		}
+//		if (player == 1) {
+//			temp = Integer.MAX_VALUE;
+//			minmax(1, board);
+//			int value = minimax(depth - 1, board, 2);
+//			if (temp > value) {
+//				temp = value;
+//				p = goPoint;
+//			}
+//
+//			}
+//		if (player == 2){
+//			
+//			temp = Integer.MIN_VALUE;
+//			minmax(2, board);
+//			int value = minimax(depth - 1, board, 1);
+//			if (temp < value) {
+//				temp = value;
+//				p = goPoint;
+//			}
+//
+//			
+//		}
+//
+//		return temp;
+//
+//	}
 
 	// tinh toan nuoc di
 	public Point AI(int player) {

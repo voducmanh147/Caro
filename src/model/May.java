@@ -20,6 +20,7 @@ public class May implements Player {
 		int X;
 		int O;
 		int[] arr = new int[board.width];
+		
 		int[] a = new int[5];
 
 		// Duyet theo hang
@@ -710,7 +711,7 @@ public class May implements Player {
 			for (col = 0; col < board.height - 4; col++) {
 //				System.out.print(" ");
 				for (int i = 0; i < 5; i++) {
-					a[i] = board.getPosition(row - i, col + i);
+					a[i] = boardState.getPosition(row - i, col + i);
 //					System.out.print(a[i]);
 				}
 				//
@@ -937,12 +938,11 @@ public class May implements Player {
 
 	}
 
-	public int minmax(int player, Board bo) {
+	public Point maxP(int player, Board bo) {
 		Point p = new Point();
 		int temp = 0;
 
 		for (int i = 0; i < bo.width; i++) {
-//				System.out.println();
 			for (int j = 0; j < bo.height; j++) {
 				if (bo.getPosition(i, j) == 0) {
 					if (player == 1) {
@@ -975,109 +975,156 @@ public class May implements Player {
 
 			}
 		}
+		
+//		System.out.println(goPoint);
+//		System.out.println(temp);
+		return goPoint;
+	}
+	public int maxH(int player, Board bo) {
+		Point p = new Point();
+		int temp = 0;
+
+		for (int i = 0; i < bo.width; i++) {
+			for (int j = 0; j < bo.height; j++) {
+				if (bo.getPosition(i, j) == 0) {
+					if (player == 1) {
+						p.setX(i);
+						p.setY(j);
+						bo.setPosition(p.x, p.y, 1);
+						if (Heucristis(bo) < temp) {
+							temp = Heucristis(bo);
+							goPoint.setX(i);
+							goPoint.setY(j);
+							bo.setPosition(i, j, 0);
+						} else {
+							bo.setPosition(i, j, 0);
+						}
+					}
+					if (player == 2) {
+						p.setX(i);
+						p.setY(j);
+						bo.setPosition(p.x, p.y, 2);
+						if (Heucristis(bo) > temp) {
+							temp = Heucristis(bo);
+							goPoint.setX(i);
+							goPoint.setY(j);
+							bo.setPosition(i, j, 0);
+						} else {
+							bo.setPosition(i, j, 0);
+						}
+					}
+				}
+
+			}
+		}
+		
+//		System.out.println(goPoint);
 //		System.out.println(temp);
 		return temp;
 	}
 
-	public int minimax(int depth, Board board, int player) {
-		int temp = 0;
-		if (depth == 0) {
-			Heucristis(board);
-		}
-		if (player == 1) {
-			temp = Integer.MAX_VALUE;
-			for (int i = 0; i < board.width; i++) {
-				for (int j = 0; j < board.height; j++) {
-					if (board.getPosition(i, j) == 0) {
-						Board ebBoard = new Board(board.height, board.width);
-						for (int k = 0; k < ebBoard.width; k++) {
-							System.out.println();
-							for (int k2 = 0; k2 < ebBoard.height; k2++) {
-								ebBoard.setPosition(k, k2, board.getPosition(i, j));
-								System.out.print(ebBoard);
-							}
-						}
-
-						ebBoard.setPosition(i, j, 1);
-						int value = minimax(depth- 1, board	, 2);
-						if (temp > value) {
-							temp = value;
-							goPoint.setX(i);
-							goPoint.setY(j);
-
-						}
-					}
-				}
-
-			}
-		}
-		if (player == 2){
-			temp = Integer.MIN_VALUE;
-			for (int i = 0; i < board.width; i++) {
-				for (int j = 0; j < board.height; j++) {
-					if (board.getPosition(i, j) == 0) {
-
-						Board ebBoard = new Board(board.height, board.width);
-						for (int k = 0; k < ebBoard.width; k++) {
-							System.out.println();
-							for (int k2 = 0; k2 < ebBoard.height; k2++) {
-								ebBoard.setPosition(k, k2, board.getPosition(i, j));
-								System.out.print(ebBoard);
-							}
-						}
-						ebBoard.setPosition(i, j, 2);
-						int value = minimax(depth - 1, ebBoard, 1);
-						if (temp < value) {
-							temp = value;
-							goPoint.setX(i);
-							goPoint.setY(j);
-
-						}
-					}
-				}
-
-			}
-		}
-
-		return temp;
-
-	}
 //	public int minimax(int depth, Board board, int player) {
-//		Point p = new Point();
 //		int temp = 0;
 //		if (depth == 0) {
 //			Heucristis(board);
 //		}
 //		if (player == 1) {
 //			temp = Integer.MAX_VALUE;
-//			minmax(1, board);
-//			int value = minimax(depth - 1, board, 2);
-//			if (temp > value) {
-//				temp = value;
-//				p = goPoint;
-//			}
+//			for (int i = 0; i < board.width; i++) {
+//				for (int j = 0; j < board.height; j++) {
+//					if (board.getPosition(i, j) == 0) {
+//						EvalBoard ebBoard = new EvalBoard(board.height, board.width);
+//						for (int k = 0; k < ebBoard.width; k++) {
+//							System.out.println();
+//							for (int k2 = 0; k2 < ebBoard.height; k2++) {
+//								ebBoard.setPosition(k, k2, board.getPosition(i, j));
+//								System.out.print(ebBoard);
+//							}
+//						}
+//
+//						ebBoard.setPosition(i, j, 1);
+//						int value = minimax(depth- 1, board	, 2);
+//						if (temp > value) {
+//							temp = value;
+//							goPoint.setX(i);
+//							goPoint.setY(j);
+//
+//						}
+//					}
+//				}
 //
 //			}
+//		}
 //		if (player == 2){
-//			
 //			temp = Integer.MIN_VALUE;
-//			minmax(2, board);
-//			int value = minimax(depth - 1, board, 1);
-//			if (temp < value) {
-//				temp = value;
-//				p = goPoint;
-//			}
+//			for (int i = 0; i < board.width; i++) {
+//				for (int j = 0; j < board.height; j++) {
+//					if (board.getPosition(i, j) == 0) {
 //
-//			
+//						Board ebBoard = new Board(board.height, board.width);
+//						for (int k = 0; k < ebBoard.width; k++) {
+//							System.out.println();
+//							for (int k2 = 0; k2 < ebBoard.height; k2++) {
+//								ebBoard.setPosition(k, k2, board.getPosition(i, j));
+//								System.out.print(ebBoard);
+//							}
+//						}
+//						ebBoard.setPosition(i, j, 2);
+//						int value = minimax(depth - 1, ebBoard, 1);
+//						if (temp < value) {
+//							temp = value;
+//							goPoint.setX(i);
+//							goPoint.setY(j);
+//
+//						}
+//					}
+//				}
+//
+//			}
 //		}
 //
 //		return temp;
 //
 //	}
+	public int minimax(int depth, Board board, int player) {
+		Point p = new Point();
+		int temp = 0;
+		if (depth == 0) {
+			maxH(player, board);
+		}else {
+		if (player == 1) {
+			temp = Integer.MAX_VALUE;
+			p = maxP(1, board);
+//			board.setPosition(p.x, p.y, 1);
+			int value = minimax(depth - 1, board, 2);
+			if (temp > value) {
+				temp = value;
+			
+			}
+
+			}
+		if (player == 2){
+			
+			temp = Integer.MIN_VALUE;
+			p = maxP(2, board);
+//			board.setPosition(p.x, p.y, 2);
+			int value = minimax(depth - 1, board, 1);
+			if (temp < value) {
+				temp = value;
+			
+			}
+
+			
+		}
+		}
+		return temp;
+
+	}
 
 	// tinh toan nuoc di
 	public Point AI(int player) {
-		minimax(0, boardState, player);
+//		maxP(player, boardState);
+		minimax(8, boardState, player);
 		Point temp = goPoint;
 		if (temp != null) {
 			_x = temp.x;
@@ -1116,15 +1163,16 @@ public class May implements Player {
 
 		ha.setPosition(5, 5, 2);
 		ha.setPosition(6, 5, 2);
+		ha.setPosition(6, 5, 1);
 
 
 
 		System.out.println(ha.toString());
 		May may = new May(ha);
-//		may.Heucristis(ha);
-		System.out.println(may.AI(2));
+		may.Heucristis(ha);
+//		System.out.println(may.AI(2));
 //		may.minimax(1, ha, 2);
-//		may.minmax(2, ha);
+//		System.out.println(may.minmax(2, ha));
 		
 
 	}

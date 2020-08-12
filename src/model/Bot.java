@@ -1039,7 +1039,7 @@ public class Bot implements Player {
 				for (int i = 0; i < board.width; i++) {
 					for (int j = 0; j < board.height; j++) {
 						if (board.getPosition(i, j) == 0) {
-							EvalBoard ebBoard = new EvalBoard(board.height, board.width);
+							Board ebBoard = new Board(board.height, board.width);
 							for (int k = 0; k < ebBoard.width; k++) {
 								System.out.println();
 								for (int k2 = 0; k2 < ebBoard.height; k2++) {
@@ -1091,7 +1091,7 @@ public class Bot implements Player {
 				}
 			}
 		}
-		System.out.println(temp);
+		System.out.println(goPoint);
 		return temp;
 
 	}

@@ -24,7 +24,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import model.Board;
-import model.May;
+import model.Bot;
 import model.Human;
 import model.Player;
 import model.Point;

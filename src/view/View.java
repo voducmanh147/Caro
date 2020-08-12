@@ -24,7 +24,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Board;
-import model.May;
+import model.Bot;
 import model.Human;
 
 public class View implements EventHandler<ActionEvent> {
@@ -38,7 +38,7 @@ public class View implements EventHandler<ActionEvent> {
 	private Button btnAbout;
 	private Button btnBoss;
 	private Board boardState;
-	private May boss;
+	private Bot boss;
 	// lop dieu khien
 	Controller controller;
 //	 mang quan co khi danh
@@ -225,10 +225,10 @@ public class View implements EventHandler<ActionEvent> {
 	}
 
 	public void replayBoss() {
-		controller.setPlayer(new May(new Board(WIDTH_BOARD, HEIGHT_BOARD)));
+		controller.setPlayer(new Bot(new Board(WIDTH_BOARD, HEIGHT_BOARD)));
 		controller.setPlayerID(1);
 		controller.reset(arrayButtonChess);
-		controller.move(WIDTH_BOARD / 2 - 1, HEIGHT_BOARD / 2, 2, arrayButtonChess);
+		gameMode();
 	
 	}
 

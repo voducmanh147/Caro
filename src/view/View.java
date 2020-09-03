@@ -31,7 +31,7 @@ public class View implements EventHandler<ActionEvent> {
 	public static final int WIDTH_BOARD = 15;
 	public static final int HEIGHT_BOARD = 15;
 	public static final int WIDTH_PANE = 1100;
-	public static final int HEIGHT_PANE = 700;
+	public static final int HEIGHT_PANE = 750;
 	private Button btnHuman;
 	private Button btnExit;
 	private Button btnUndo;
@@ -124,7 +124,7 @@ public class View implements EventHandler<ActionEvent> {
 		btnBoss = new Button("Chơi với máy");
 		btnBoss.setId("btnMenu");
 		btnBoss.setOnAction(this);
-		AnchorPane.setTopAnchor(btnBoss, 60.0);
+		AnchorPane.setTopAnchor(btnBoss, 70.0);
 		AnchorPane.setLeftAnchor(btnBoss, 30.0);
 		AnchorPane.setRightAnchor(btnBoss, 30.0);
 		anchorPaneMenu.getChildren().add(btnBoss);
@@ -133,7 +133,7 @@ public class View implements EventHandler<ActionEvent> {
 		btnUndo = new Button("Quay lại");
 		btnUndo.setId("btnMenu");
 		btnUndo.setOnAction(this);
-		AnchorPane.setTopAnchor(btnUndo, 110.0);
+		AnchorPane.setTopAnchor(btnUndo, 130.0);
 		AnchorPane.setLeftAnchor(btnUndo, 30.0);
 		AnchorPane.setRightAnchor(btnUndo, 30.0);
 		anchorPaneMenu.getChildren().add(btnUndo);
@@ -142,7 +142,7 @@ public class View implements EventHandler<ActionEvent> {
 		btnAbout = new Button("Luật chơi");
 		btnAbout.setId("btnMenu");
 		btnAbout.setOnAction(this);
-		AnchorPane.setTopAnchor(btnAbout, 160.0);
+		AnchorPane.setTopAnchor(btnAbout, 190.0);
 		AnchorPane.setLeftAnchor(btnAbout, 30.0);
 		AnchorPane.setRightAnchor(btnAbout, 30.0);
 		anchorPaneMenu.getChildren().add(btnAbout);
@@ -150,7 +150,7 @@ public class View implements EventHandler<ActionEvent> {
 		btnExit = new Button("Thoát");
 		btnExit.setId("btnMenu");
 		btnExit.setOnAction(this);
-		AnchorPane.setTopAnchor(btnExit, 210.0);
+		AnchorPane.setTopAnchor(btnExit, 250.0);
 		AnchorPane.setLeftAnchor(btnExit, 30.0);
 		AnchorPane.setRightAnchor(btnExit, 30.0);
 		anchorPaneMenu.getChildren().add(btnExit);
@@ -194,10 +194,34 @@ public class View implements EventHandler<ActionEvent> {
 		}
 		if (e.getSource() == btnHuman) {
 			replayHuman();
+			 btnHuman.setStyle("-fx-background-color: black;\r\n" + 
+			 		"    -fx-scale-y: 1.1;\r\n" + 
+			 		"    -fx-text-fill: white;\r\n" + 
+			 		"    -fx-font-size: 22.0px;");
+			 btnBoss.setStyle("-fx-background-radius: 15.0;\r\n" + 
+				 		"	 -fx-min-height: 30.0px;\r\n" + 
+				 		"	 -fx-font-style: oblique ;\r\n" + 
+				 		"	 -fx-font-weight: bold;\r\n" + 
+				 		"	 -fx-font-family: \"Times New Roman\", Times, Arial, sans-serif;\r\n" + 
+				 		"	 -fx-wrap-text: true ;\r\n" + 
+				 		"	 -fx-font-size: 20.0px;\r\n" + 
+				 		"	 -fx-border-color: transparent ;");
 			d = true;
 		}
 		if (e.getSource() == btnBoss) {
 			replayBoss();
+			 btnBoss.setStyle("-fx-background-color: black;\r\n" + 
+			 		"    -fx-scale-y: 1.1;\r\n" + 
+			 		"    -fx-text-fill: white;\r\n" + 
+			 		"    -fx-font-size: 22.0px;");
+			 btnHuman.setStyle("-fx-background-radius: 15.0;\r\n" + 
+			 		"	 -fx-min-height: 30.0px;\r\n" + 
+			 		"	 -fx-font-style: oblique ;\r\n" + 
+			 		"	 -fx-font-weight: bold;\r\n" + 
+			 		"	 -fx-font-family: \"Times New Roman\", Times, Arial, sans-serif;\r\n" + 
+			 		"	 -fx-wrap-text: true ;\r\n" + 
+			 		"	 -fx-font-size: 20.0px;\r\n" + 
+			 		"	 -fx-border-color: transparent ;");
 			d = false;
 		}
 		if (e.getSource() == btnUndo) {
@@ -226,7 +250,7 @@ public class View implements EventHandler<ActionEvent> {
 
 	public void replayBoss() {
 		controller.setPlayer(new Bot(new Board(WIDTH_BOARD, HEIGHT_BOARD)));
-		controller.setPlayerID(1);
+//		controller.setPlayerID(1);
 		controller.reset(arrayButtonChess);
 		gameMode();
 	
@@ -247,7 +271,7 @@ public class View implements EventHandler<ActionEvent> {
 //		Optional<ButtonType> result = gameMode.showAndWait();
 //		if (result.get() == ButtonType.CANCEL) {
 			controller.move(WIDTH_BOARD / 2 - 1, HEIGHT_BOARD / 2, 2, arrayButtonChess);
-//			controller.setPlayerID(1);
+			controller.setPlayerID(1);
 //		} else {
 //			controller.setPlayerID(1);
 //		}

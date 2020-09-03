@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Bot implements Player {
-	EvalBoard e;
+	EvalBoard eBoard;
 	Board boardState; // trang thai cua ban co
 	int playerid = 2; // danh dau la computer player
 	int _x, _y; // toa do nuoc di
@@ -13,6 +13,7 @@ public class Bot implements Player {
 
 	public Bot(Board board) {
 		this.boardState = board;
+		this.eBoard = new EvalBoard(board.width, board.height);
 
 	}
 
@@ -944,47 +945,8 @@ public class Bot implements Player {
 
 	}
 
-	public Point maxP(int player, Board bo) {
-		Point p = new Point();
-		int temp = 0;
-		Board e = new Board(bo.width, bo.height);
-		for (int i = 0; i < bo.width; i++) {
-			for (int j = 0; j < bo.height; j++) {
-				e.resetBoard();
-				for (int i1 = 0; i1 < e.width; i1++) {
-					for (int j1 = 0; j1 < e.height; j1++) {
-						e.setPosition(i1, j1, bo.getPosition(i, j));
-					}
-				}
-				if (e.getPosition(i, j) == 0) {
-					if (player == 1) {
-						e.setPosition(i, j, 1);
-						if (Heucristis(e) < temp) {
-							temp = Heucristis(e);
-							goPoint.setX(i);
-							goPoint.setY(j);
-						}
-						if (player == 2) {
-							bo.setPosition(i, j, 2);
-							if (Heucristis(bo) > temp) {
-								temp = Heucristis(e);
-								goPoint.setX(i);
-								goPoint.setY(j);
-							}
 
-						}
-
-					}
-				}
-
-//		System.out.println(goPoint);
-//		System.out.println(temp);
-			}
-		}
-		return goPoint;
-	}
-
-	public int currentBoard(int player, Board bo) {
+	public int minmaxlv1(int player, Board bo) {
 		Point p = new Point();
 		int temp = 0;
 
@@ -1026,12 +988,46 @@ public class Bot implements Player {
 //		System.out.println(temp);
 		return temp;
 	}
+	public int currentBoard(int player, Board bo) {
+		int temp = 0;
+		for (int i = 0; i < bo.width; i++) {
+//			System.out.println();
+			for (int j = 0; j < bo.height; j++) {
+				if (bo.getPosition(i, j) == 0) {
+					if (player == 1) {
+						bo.setPosition(i, j, 1);
+							temp = Heucristis(bo);
+							goPoint.setX(i);
+							goPoint.setY(j);
+							eBoard.setPosition(i, j, temp);
+							bo.setPosition(i, j, 0);
+//							System.out.print(eBoard.EBoard[i][j] + "\t");
 
-	public int minimax(int depth, Board board, int player) {
+					}
+					if (player == 2) {
+						bo.setPosition(i, j, 2);
+							temp = Heucristis(bo);
+							goPoint.setX(i);
+							goPoint.setY(j);
+							bo.setPosition(i, j, 0);
+							eBoard.setPosition(i, j, temp);
+//							System.out.print(eBoard.EBoard[i][j]+ "\t");
 	
+					}
+				}else {
+					eBoard.setPosition(i, j, bo.getPosition(i, j));
+//					System.out.print(eBoard.EBoard[i][j]+ "\t");
+				}
+
+			}
+		}
+		return 0;
+	}
+	public int minimax(int depth, Board board, int player) {
+		
 		int temp = 0;
 		if (depth == 0) {
-			Heucristis(board);
+			temp = Heucristis(board);
 		} else {
 
 			if (player == 1) {
@@ -1040,14 +1036,7 @@ public class Bot implements Player {
 					for (int j = 0; j < board.height; j++) {
 						if (board.getPosition(i, j) == 0) {
 							Board ebBoard = new Board(board.height, board.width);
-							for (int k = 0; k < ebBoard.width; k++) {
-								System.out.println();
-								for (int k2 = 0; k2 < ebBoard.height; k2++) {
-									ebBoard.setPosition(k, k2, board.getPosition(i, j));
-									System.out.print(ebBoard);
-								}
-							}
-
+							ebBoard = copyArray(board);
 							ebBoard.setPosition(i, j, 1);
 							int value = minimax(depth - 1, board, 2);
 							if (temp > value) {
@@ -1070,13 +1059,8 @@ public class Bot implements Player {
 						if (board.getPosition(i, j) == 0) {
 
 							Board ebBoard = new Board(board.height, board.width);
-							for (int k = 0; k < ebBoard.width; k++) {
-								System.out.println();
-								for (int k2 = 0; k2 < ebBoard.height; k2++) {
-									ebBoard.setPosition(k, k2, board.getPosition(i, j));
-									System.out.print(ebBoard);
-								}
-							}
+							
+							ebBoard = copyArray(board);
 							ebBoard.setPosition(i, j, 2);
 							int value = minimax(depth - 1, ebBoard, 1);
 							if (temp < value) {
@@ -1092,52 +1076,39 @@ public class Bot implements Player {
 			}
 		}
 		System.out.println(goPoint);
+		System.out.println(temp);
 		return temp;
 
 	}
-//	public int minimax(int depth, Board board, int player) {
-//		ArrayList<Point> list = new ArrayList<>();
-//		Point p = new Point();
-//		int temp = 0;
-//		if (depth == 0) {
-//			maxH(player, board);
-//		} else {
-//			if (player == 1) {
-//				temp = Integer.MAX_VALUE;
-//				p = maxP(1, board);
-//				board.setPosition(p.x, p.y, 1);
-//				int value = minimax(depth - 1, board, 2);
-//				if (temp > value) {
-//					temp = value;
-//
-//				}
-//
-//			}
-//			if (player == 2) {
-//
-//				temp = Integer.MIN_VALUE;
-//				p = maxP(2, board);
-//				board.setPosition(p.x, p.y, 2);
-//				int value = minimax(depth - 1, board, 1);
-//				if (temp < value) {
-//					temp = value;
-//					list.add(p);
-//
-//				}
-//
-//			}
-//		}
-//		goPoint = list.get(0);
-//		return temp;
-//
-//	}
+	public static Board copyArray(Board input) {
+		Board result = new Board(input.width, input.height);
+		for (int i = 0; i < input.width; i++) {
+			System.out.println();
+			for (int j = 0; j < input.height; j++) {
+				result.boardArr[i][j] = input.boardArr[i][j];
+				System.out.print(result.boardArr[i][j]);
+			}
+			
+		}
+		return result;
+	}
 
 	// tinh toan nuoc di
 	public Point AI(int player) {
-		currentBoard(player, boardState);
-		minimax(1, boardState, player);
-		Point temp = goPoint;
-		return temp;
+//		minmaxlv1(player, boardState);
+		int a = 1;
+		if (a%2 == 0) {
+			player = 1;
+		}else {
+			player = 2;
+		}
+		minimax(a, boardState, player);
+		Point p = goPoint;
+		if (p != null) {
+			_x = p.x;
+			_y = p.y;
+		}
+		return p;
 	}
 
 	@Override
@@ -1160,11 +1131,21 @@ public class Bot implements Player {
 		return AI(player);
 	}
 
-//
+
+	public void ad(Board c) {
+		Board e;
+		c.setPosition(1, 1, 1);
+		e = copyArray(c);
+;
+	System.out.println(c.setPosition(1, 1, 1)+"\n");
+		
+	}
 //	public static void main(String[] args) {
-//
+////
 //		Board ha = new Board(15, 15);
 ////
+//		ha.setPosition(0, 2, 2);
+//		ha.setPosition(0, 3, 1);
 //		ha.setPosition(5, 2, 1);
 //		ha.setPosition(5, 3, 1);
 //		ha.setPosition(5, 4, 1);
@@ -1174,12 +1155,14 @@ public class Bot implements Player {
 //		ha.setPosition(6, 5, 1);
 //
 //		System.out.println(ha.toString());
-//		May may = new May(ha);
+//		Bot may = new Bot(ha);
 ////		may.Heucristis(ha);
 ////		System.out.println(may.AI(2));
-//		may.minimax(1, ha, 2);
+////		may.copyArray(ha);
+////		may.minimax(2, ha, 2);
 ////		System.out.println(may.minmax(2, ha));
-//
+//		int a = 3;
+//		System.out.println(a%2);
 //	}
 
 }

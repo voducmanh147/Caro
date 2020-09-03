@@ -2,7 +2,7 @@ package model;
 
 public class Board {
 	// Mang luu lai cac trang thai cac quan co
-		public static int[][] boardArr;
+		public  int[][] boardArr;
 		public 	int width;
 		public  int height;
 		// khoi tao
@@ -117,8 +117,7 @@ public class Board {
 		public int getPosition(int x, int y) {
 			return boardArr[x][y];
 		}
-		public void setPosition(int x, int y, int player) {
-			boardArr[x][y] = player;
+		public int setPosition(int x, int y, int player) {
+			return boardArr[x][y] = player;
 		}
-	}
-
+}

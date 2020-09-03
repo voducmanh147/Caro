@@ -42,6 +42,7 @@ public class Controller {
 	private boolean end;
 	private int tongNuocDi;
 	private String playerWin;
+	private Board bo;
 
 	public Controller() {
 		getComponents();
@@ -87,7 +88,7 @@ public class Controller {
 	}
 
 	public boolean isValid(int x, int y) {
-		if (Board.boardArr[x][y] != 0) {
+		if (bo.boardArr[x][y] != 0) {
 			return false;
 		}
 		return true;
@@ -231,21 +232,20 @@ public class Controller {
 	}
 
 	// quay lại 1 nuoc co
-
 	public void undo(Button[][] arrayButtonChess) {
 		if (!stack.isEmpty()) {
 			if (getPlayerID() == 1) {
 				tongNuocDi--;
 				Point point = stack.pop();
 				getBoardState();
-				Board.boardArr[point.x][point.y] = 0;
+				bo.boardArr[point.x][point.y] = 0;
 				arrayButtonChess[point.x][point.y].setGraphic(null);
 				setPlayerID(2);
 			} else {
 				tongNuocDi--;
 				Point point = stack.pop();
 				getBoardState();
-				Board.boardArr[point.x][point.y] = 0;
+				bo.boardArr[point.x][point.y] = 0;
 				arrayButtonChess[point.x][point.y].setGraphic(null);
 				setPlayerID(1);
 			}
@@ -260,7 +260,7 @@ public class Controller {
 				tongNuocDi--;
 				Point point = stack.pop();
 				getBoardState();
-				Board.boardArr[point.x][point.y] = 0;
+				bo.boardArr[point.x][point.y] = 0;
 				arrayButtonChess[point.x][point.y].setGraphic(null);
 			}
 

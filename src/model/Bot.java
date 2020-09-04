@@ -1094,9 +1094,10 @@ public class Bot implements Player {
 	}
 
 	// tinh toan nuoc di
-	public Point AI(int player) {
+	public Point AI() {
 //		minmaxlv1(player, boardState);
 		int a = 1;
+		int player;
 		if (a%2 == 0) {
 			player = 1;
 		}else {
@@ -1127,8 +1128,8 @@ public class Bot implements Player {
 	}
 
 	@Override
-	public Point movePoint(int player) {
-		return AI(player);
+	public Point movePoint() {
+		return AI();
 	}
 
 

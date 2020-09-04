@@ -1,7 +1,7 @@
 package model;
 
 public interface Player {
-	public Point movePoint(int player);
+	public Point movePoint();
 
 	int getPlayerID();
 

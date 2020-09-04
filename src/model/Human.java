@@ -8,7 +8,7 @@ public class Human implements Player{
 		this.boardState = board;
 	}
 	@Override
-	public Point movePoint(int players) {
+	public Point movePoint() {
 		return null;
 	}
 	@Override

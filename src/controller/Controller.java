@@ -42,8 +42,8 @@ public class Controller {
 	private boolean end;
 	private int tongNuocDi;
 	private String playerWin;
-	private Board bo;
-
+	Board boardState;
+	
 	public Controller() {
 		getComponents();
 	}
@@ -60,8 +60,8 @@ public class Controller {
 		imageX = new Image(x);
 	}
 
-	public Point AI(int player) {
-		return this.player.movePoint(player);
+	public Point AI() {
+		return this.player.movePoint();
 	}
 
 	public int getPlayerID() {
@@ -87,12 +87,12 @@ public class Controller {
 		return end;
 	}
 
-	public boolean isValid(int x, int y) {
-		if (bo.boardArr[x][y] != 0) {
-			return false;
-		}
-		return true;
-	}
+//	public boolean isValid(int x, int y) {
+//		if (boardState.boardArr[x][y] != 0) {
+//			return false;
+//		}
+//		return true;
+//	}
 
 	public void play(Button c, Button[][] a) {
 		StringTokenizer tokenizer = new StringTokenizer(c.getAccessibleText(), ";");
@@ -125,8 +125,8 @@ public class Controller {
 //			}
 //		}
 		if (player instanceof Human) {
-			getBoardState();
-			if (getPlayerID() == 1 && isValid(x, y) == true) {
+			Board aH = getBoardState();
+			if (getPlayerID() == 1 && aH.boardArr[x][y] == 0) {
 				move(x, y, 1, a);
 				setPlayerID(2);
 				if (isOver(x, y) == 1) {
@@ -141,8 +141,8 @@ public class Controller {
 					dialog("Player 1 Huề Player 2!");
 				}
 			} else {
-				getBoardState();
-				if (getPlayerID() == 2 && isValid(x, y) == true) {
+				Board aM = getBoardState();
+				if (getPlayerID() == 2 && aM.boardArr[x][y] == 0) {
 					move(x, y, 2, a);
 					setPlayerID(1);
 				}
@@ -179,7 +179,7 @@ public class Controller {
 				}
 			}
 			if (getPlayerID() == 2) {
-				Point p = AI(2);
+				Point p = AI();
 				move(p.x, p.y, 2, a);
 				setPlayerID(1);
 				if (playerWin.equals("1")) {
@@ -234,18 +234,19 @@ public class Controller {
 	// quay lại 1 nuoc co
 	public void undo(Button[][] arrayButtonChess) {
 		if (!stack.isEmpty()) {
+			
 			if (getPlayerID() == 1) {
 				tongNuocDi--;
 				Point point = stack.pop();
-				getBoardState();
-				bo.boardArr[point.x][point.y] = 0;
+				Board e = getBoardState();
+				e.boardArr[point.x][point.y] = 0;
 				arrayButtonChess[point.x][point.y].setGraphic(null);
 				setPlayerID(2);
 			} else {
 				tongNuocDi--;
 				Point point = stack.pop();
-				getBoardState();
-				bo.boardArr[point.x][point.y] = 0;
+				Board e = getBoardState();
+				e.boardArr[point.x][point.y] = 0;
 				arrayButtonChess[point.x][point.y].setGraphic(null);
 				setPlayerID(1);
 			}
@@ -259,11 +260,13 @@ public class Controller {
 			for (int i = 0; i < 2; i++) {
 				tongNuocDi--;
 				Point point = stack.pop();
-				getBoardState();
-				bo.boardArr[point.x][point.y] = 0;
+				Board e = getBoardState();
+				e.boardArr[point.x][point.y] = 0;
 				arrayButtonChess[point.x][point.y].setGraphic(null);
 			}
 
+		}else {
+			reset(arrayButtonChess);
 		}
 	}
 

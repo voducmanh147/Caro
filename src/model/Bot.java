@@ -92,8 +92,7 @@ public class Bot implements Player {
 //				int[] x8 = { 0, 1, 1, 0, 0 };
 //				int[] x9 = { 0, 0, 1, 1, 0 };
 				if (a[0] == 0 && a[1] == 0 && a[2] == 1 && a[3] == 1 && a[4] == 0
-						|| a[0] == 0 && a[1] == 1 && a[2] == 1 && a[3] == 0 && a[4] == 0
-						) {
+						|| a[0] == 0 && a[1] == 1 && a[2] == 1 && a[3] == 0 && a[4] == 0) {
 					X = 4;
 					if (XSore1 < X) {
 						XSore1 = X;
@@ -195,8 +194,7 @@ public class Bot implements Player {
 //				int[] o8 = { 0, 2, 2, 0, 0 };
 //				int[] o9 = { 0, 0, 2, 2, 0 };
 				if (a[0] == 0 && a[1] == 2 && a[2] == 2 && a[3] == 0 && a[4] == 0
-						|| a[0] == 0 && a[1] == 0 && a[2] == 2 && a[3] == 2 && a[4] == 0
-						) {
+						|| a[0] == 0 && a[1] == 0 && a[2] == 2 && a[3] == 2 && a[4] == 0) {
 					O = 4;
 
 					if (OSore1 < O) {
@@ -320,8 +318,7 @@ public class Bot implements Player {
 				// int[] x8 = { 0, 1, 1, 0, 0 };
 				// int[] x9 = { 0, 0, 1, 1, 0 }; {0,1,1,1,2}; {2,1,1,1,0}
 				if (a[0] == 0 && a[1] == 0 && a[2] == 1 && a[3] == 1 && a[4] == 0
-						|| a[0] == 0 && a[1] == 1 && a[2] == 1 && a[3] == 0 && a[4] == 0
-						) {
+						|| a[0] == 0 && a[1] == 1 && a[2] == 1 && a[3] == 0 && a[4] == 0) {
 					X = 4;
 					if (XSore2 < X) {
 						XSore2 = X;
@@ -423,8 +420,7 @@ public class Bot implements Player {
 				// int[] o8 = { 0, 2, 2, 0, 0 };
 				// int[] o9 = { 0, 0, 2, 2, 0 };
 				if (a[0] == 0 && a[1] == 2 && a[2] == 2 && a[3] == 0 && a[4] == 0
-						|| a[0] == 0 && a[1] == 0 && a[2] == 2 && a[3] == 2 && a[4] == 0
-						) {
+						|| a[0] == 0 && a[1] == 0 && a[2] == 2 && a[3] == 2 && a[4] == 0) {
 					O = 4;
 
 					if (OSore2 < O) {
@@ -546,8 +542,7 @@ public class Bot implements Player {
 				// int[] x8 = { 0, 1, 1, 0, 0 };
 				// int[] x9 = { 0, 0, 1, 1, 0 }; {0,1,1,1,2}; {2,1,1,1,0}
 				if (a[0] == 0 && a[1] == 0 && a[2] == 1 && a[3] == 1 && a[4] == 0
-						|| a[0] == 0 && a[1] == 1 && a[2] == 1 && a[3] == 0 && a[4] == 0
-						) {
+						|| a[0] == 0 && a[1] == 1 && a[2] == 1 && a[3] == 0 && a[4] == 0) {
 					X = 4;
 					if (XSore3 < X) {
 						XSore3 = X;
@@ -649,8 +644,7 @@ public class Bot implements Player {
 				// int[] o8 = { 0, 2, 2, 0, 0 };
 				// int[] o9 = { 0, 0, 2, 2, 0 };
 				if (a[0] == 0 && a[1] == 2 && a[2] == 2 && a[3] == 0 && a[4] == 0
-						|| a[0] == 0 && a[1] == 0 && a[2] == 2 && a[3] == 2 && a[4] == 0
-						) {
+						|| a[0] == 0 && a[1] == 0 && a[2] == 2 && a[3] == 2 && a[4] == 0) {
 					O = 4;
 
 					if (OSore3 < O) {
@@ -689,8 +683,7 @@ public class Bot implements Player {
 						|| a[0] == 0 && a[1] == 1 && a[2] == 1 && a[3] == 2 && a[4] == 1
 						|| a[0] == 1 && a[1] == 2 && a[2] == 1 && a[3] == 1 && a[4] == 0
 						|| a[0] == 1 && a[1] == 0 && a[2] == 1 && a[3] == 1 && a[4] == 2
-						|| a[0] == 2 && a[1] == 1 && a[2] == 1 && a[3] == 0 && a[4] == 1
-						) {
+						|| a[0] == 2 && a[1] == 1 && a[2] == 1 && a[3] == 0 && a[4] == 1) {
 
 					O = 65;
 
@@ -771,8 +764,7 @@ public class Bot implements Player {
 				// int[] x8 = { 0, 1, 1, 0, 0 };
 				// int[] x9 = { 0, 0, 1, 1, 0 }; {0,1,1,1,2}; {2,1,1,1,0}
 				if (a[0] == 0 && a[1] == 0 && a[2] == 1 && a[3] == 1 && a[4] == 0
-						|| a[0] == 0 && a[1] == 1 && a[2] == 1 && a[3] == 0 && a[4] == 0
-						) {
+						|| a[0] == 0 && a[1] == 1 && a[2] == 1 && a[3] == 0 && a[4] == 0) {
 					X = 4;
 					if (XSore4 < X) {
 						XSore4 = X;
@@ -874,8 +866,7 @@ public class Bot implements Player {
 				// int[] o8 = { 0, 2, 2, 0, 0 };
 				// int[] o9 = { 0, 0, 2, 2, 0 };
 				if (a[0] == 0 && a[1] == 2 && a[2] == 2 && a[3] == 0 && a[4] == 0
-						|| a[0] == 0 && a[1] == 0 && a[2] == 2 && a[3] == 2 && a[4] == 0
-						) {
+						|| a[0] == 0 && a[1] == 0 && a[2] == 2 && a[3] == 2 && a[4] == 0) {
 					O = 4;
 
 					if (OSore4 < O) {
@@ -945,7 +936,6 @@ public class Bot implements Player {
 
 	}
 
-
 	public int minmaxlv1(int player, Board bo) {
 		Point p = new Point();
 		int temp = 0;
@@ -988,43 +978,9 @@ public class Bot implements Player {
 //		System.out.println(temp);
 		return temp;
 	}
-	public int currentBoard(int player, Board bo) {
-		int temp = 0;
-		for (int i = 0; i < bo.width; i++) {
-//			System.out.println();
-			for (int j = 0; j < bo.height; j++) {
-				if (bo.getPosition(i, j) == 0) {
-					if (player == 1) {
-						bo.setPosition(i, j, 1);
-							temp = Heucristis(bo);
-							goPoint.setX(i);
-							goPoint.setY(j);
-							eBoard.setPosition(i, j, temp);
-							bo.setPosition(i, j, 0);
-//							System.out.print(eBoard.EBoard[i][j] + "\t");
 
-					}
-					if (player == 2) {
-						bo.setPosition(i, j, 2);
-							temp = Heucristis(bo);
-							goPoint.setX(i);
-							goPoint.setY(j);
-							bo.setPosition(i, j, 0);
-							eBoard.setPosition(i, j, temp);
-//							System.out.print(eBoard.EBoard[i][j]+ "\t");
-	
-					}
-				}else {
-					eBoard.setPosition(i, j, bo.getPosition(i, j));
-//					System.out.print(eBoard.EBoard[i][j]+ "\t");
-				}
-
-			}
-		}
-		return 0;
-	}
 	public int minimax(int depth, Board board, int player) {
-		
+
 		int temp = 0;
 		if (depth == 0) {
 			temp = Heucristis(board);
@@ -1038,12 +994,11 @@ public class Bot implements Player {
 							Board ebBoard = new Board(board.height, board.width);
 							ebBoard = copyArray(board);
 							ebBoard.setPosition(i, j, 1);
-							int value = minimax(depth - 1, board, 2);
+							int value = minimax(depth - 1, ebBoard, 2);
 							if (temp > value) {
 								temp = value;
 								goPoint.setX(i);
 								goPoint.setY(j);
-								
 
 							}
 						}
@@ -1059,7 +1014,7 @@ public class Bot implements Player {
 						if (board.getPosition(i, j) == 0) {
 
 							Board ebBoard = new Board(board.height, board.width);
-							
+
 							ebBoard = copyArray(board);
 							ebBoard.setPosition(i, j, 2);
 							int value = minimax(depth - 1, ebBoard, 1);
@@ -1067,7 +1022,7 @@ public class Bot implements Player {
 								temp = value;
 								goPoint.setX(i);
 								goPoint.setY(j);
-								
+
 							}
 						}
 					}
@@ -1080,6 +1035,64 @@ public class Bot implements Player {
 		return temp;
 
 	}
+
+	public int AlphaBeta(int depth, Board board, int player, int alpha, int beta) {
+
+		int temp = 0;
+		if (depth == 0) {
+			temp = Heucristis(board);
+		} else {
+
+			if (player == 1) {
+				temp = Integer.MAX_VALUE;
+				for (int i = 0; i < board.width; i++) {
+					for (int j = 0; j < board.height; j++) {
+						if (board.getPosition(i, j) == 0) {
+							Board ebBoard = new Board(board.height, board.width);
+							ebBoard = copyArray(board);
+							ebBoard.setPosition(i, j, 1);
+							int value = AlphaBeta(depth -1, ebBoard, 2, alpha, beta);
+							if (temp > value) {
+								temp = value;
+								goPoint.setX(i);
+								goPoint.setY(j);
+
+							}
+						}
+					}
+
+				}
+			}
+			if (player == 2) {
+				temp = Integer.MIN_VALUE;
+				for (int i = 0; i < board.width; i++) {
+					System.out.println();
+					for (int j = 0; j < board.height; j++) {
+						if (board.getPosition(i, j) == 0) {
+
+							Board ebBoard = new Board(board.height, board.width);
+
+							ebBoard = copyArray(board);
+							ebBoard.setPosition(i, j, 2);
+							int value = minimax(depth - 1, ebBoard, 1);
+							if (temp < value) {
+								temp = value;
+								goPoint.setX(i);
+								goPoint.setY(j);
+
+							}
+						}
+					}
+
+				}
+			}
+		}
+		System.out.println(goPoint);
+		System.out.println(temp);
+		return temp;
+
+	}
+
 	public static Board copyArray(Board input) {
 		Board result = new Board(input.width, input.height);
 		for (int i = 0; i < input.width; i++) {
@@ -1088,7 +1101,7 @@ public class Bot implements Player {
 				result.boardArr[i][j] = input.boardArr[i][j];
 				System.out.print(result.boardArr[i][j]);
 			}
-			
+
 		}
 		return result;
 	}
@@ -1096,14 +1109,14 @@ public class Bot implements Player {
 	// tinh toan nuoc di
 	public Point AI() {
 //		minmaxlv1(player, boardState);
-		int a = 1;
+		int depth = 1;
 		int player;
-		if (a%2 == 0) {
+		if (depth % 2 == 0) {
 			player = 1;
-		}else {
+		} else {
 			player = 2;
 		}
-		minimax(a, boardState, player);
+		minimax(depth, boardState, player);
 		Point p = goPoint;
 		if (p != null) {
 			_x = p.x;
@@ -1132,14 +1145,7 @@ public class Bot implements Player {
 		return AI();
 	}
 
-
 	public void ad(Board c) {
-		Board e;
-		c.setPosition(1, 1, 1);
-		e = copyArray(c);
-;
-	System.out.println(c.setPosition(1, 1, 1)+"\n");
-		
 	}
 //	public static void main(String[] args) {
 ////

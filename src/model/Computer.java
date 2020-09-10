@@ -3,17 +3,17 @@ package model;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Bot implements Player {
-	EvalBoard eBoard;
+public class Computer implements Player {
+	
 	Board boardState; // trang thai cua ban co
 	int playerid = 2; // danh dau la computer player
 	int _x, _y; // toa do nuoc di
 
 	Point goPoint = new Point();
 
-	public Bot(Board board) {
+	public Computer(Board board) {
 		this.boardState = board;
-		this.eBoard = new EvalBoard(board.width, board.height);
+	
 
 	}
 
@@ -992,7 +992,7 @@ public class Bot implements Player {
 					for (int j = 0; j < board.height; j++) {
 						if (board.getPosition(i, j) == 0) {
 							Board ebBoard = new Board(board.height, board.width);
-							ebBoard = copyArray(board);
+							ebBoard = copyBoard(board);
 							ebBoard.setPosition(i, j, 1);
 							int value = minimax(depth - 1, ebBoard, 2);
 							if (temp > value) {
@@ -1015,7 +1015,7 @@ public class Bot implements Player {
 
 							Board ebBoard = new Board(board.height, board.width);
 
-							ebBoard = copyArray(board);
+							ebBoard = copyBoard(board);
 							ebBoard.setPosition(i, j, 2);
 							int value = minimax(depth - 1, ebBoard, 1);
 							if (temp < value) {
@@ -1038,25 +1038,31 @@ public class Bot implements Player {
 
 	public int AlphaBeta(int depth, Board board, int player, int alpha, int beta) {
 
-		int temp = 0;
+		int valueBoard = 0;
 		if (depth == 0) {
-			temp = Heucristis(board);
+			return valueBoard = Heucristis(board);
 		} else {
 
 			if (player == 1) {
-				temp = Integer.MAX_VALUE;
-				for (int i = 0; i < board.width; i++) {
+				int temp = beta;
+				b: for (int i = 0; i < board.width; i++) {
 					for (int j = 0; j < board.height; j++) {
 						if (board.getPosition(i, j) == 0) {
 							Board ebBoard = new Board(board.height, board.width);
-							ebBoard = copyArray(board);
+							ebBoard = copyBoard(board);
 							ebBoard.setPosition(i, j, 1);
 							int value = AlphaBeta(depth -1, ebBoard, 2, alpha, beta);
 							if (temp > value) {
 								temp = value;
 								goPoint.setX(i);
 								goPoint.setY(j);
-
+								valueBoard = temp;
+								if (valueBoard <= alpha) {
+									break b;
+									
+								} else {
+									alpha = valueBoard;
+								}
 							}
 						}
 					}
@@ -1064,22 +1070,27 @@ public class Bot implements Player {
 				}
 			}
 			if (player == 2) {
-				temp = Integer.MIN_VALUE;
-				for (int i = 0; i < board.width; i++) {
+				int temp = alpha;
+				b: for (int i = 0; i < board.width; i++) {
 					System.out.println();
 					for (int j = 0; j < board.height; j++) {
 						if (board.getPosition(i, j) == 0) {
 
 							Board ebBoard = new Board(board.height, board.width);
 
-							ebBoard = copyArray(board);
+							ebBoard = copyBoard(board);
 							ebBoard.setPosition(i, j, 2);
 							int value = minimax(depth - 1, ebBoard, 1);
 							if (temp < value) {
 								temp = value;
 								goPoint.setX(i);
 								goPoint.setY(j);
-
+								valueBoard = temp;
+								if (valueBoard >= beta) {
+									break b;
+								} else {
+									alpha = valueBoard;
+								}
 							}
 						}
 					}
@@ -1087,13 +1098,12 @@ public class Bot implements Player {
 				}
 			}
 		}
-		System.out.println(goPoint);
-		System.out.println(temp);
-		return temp;
+	
+		return valueBoard;
 
 	}
 
-	public static Board copyArray(Board input) {
+	public static Board copyBoard(Board input) {
 		Board result = new Board(input.width, input.height);
 		for (int i = 0; i < input.width; i++) {
 			System.out.println();
@@ -1108,7 +1118,7 @@ public class Bot implements Player {
 
 	// tinh toan nuoc di
 	public Point AI() {
-//		minmaxlv1(player, boardState);
+
 		int depth = 1;
 		int player;
 		if (depth % 2 == 0) {
@@ -1116,12 +1126,17 @@ public class Bot implements Player {
 		} else {
 			player = 2;
 		}
-		minimax(depth, boardState, player);
+//		minimax(depth, boardState, player);
+		AlphaBeta(depth, boardState, player, Integer.MIN_VALUE, Integer.MAX_VALUE);
 		Point p = goPoint;
 		if (p != null) {
 			_x = p.x;
 			_y = p.y;
 		}
+		
+		
+		
+		minmaxlv1(player, boardState);
 		return p;
 	}
 
@@ -1171,5 +1186,4 @@ public class Bot implements Player {
 //		int a = 3;
 //		System.out.println(a%2);
 //	}
-
 }

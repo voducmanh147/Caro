@@ -24,7 +24,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import model.Board;
-import model.Bot;
+import model.Computer;
 import model.Human;
 import model.Player;
 import model.Point;
@@ -75,7 +75,7 @@ public class Controller {
 	public Board getBoardState() {
 		return player.getBoardState();
 	}
-
+//Kiem tra chien thang chua ? 
 	public int isOver(int x, int y) {
 		if (tongNuocDi != (getBoardState().height * getBoardState().width)) {
 			return player.getBoardState().isOver(x, y);
@@ -99,34 +99,10 @@ public class Controller {
 		int x = Integer.parseInt(tokenizer.nextToken());
 		int y = Integer.parseInt(tokenizer.nextToken());
 		//
-//		if (player instanceof Human) {
-//			if (isOver(x, y) == 1) {
-//				playerWin = 1 + "";
-//				dialog("Player " + playerWin + " Win!");
-//			}
-//			if (isOver(x, y) == 2) {
-//				playerWin = 2 + "";
-//				dialog("Player " + playerWin + " Win!");
-//			}
-//			if (isOver(x, y) == 10) {
-//				dialog("Player 1 Huề Player 2!");
-//			}
-//		} else {
-//			if (playerWin.equals("1")) {
-//				playerWin = "Sen";
-//				dialog(playerWin + " Win!");
-//			}
-//			if (playerWin.equals("2")) {
-//				playerWin = "Boss";
-//				dialog(playerWin + " Win!");
-//			}
-//			if (isOver(x, y) == 10) {
-//				dialog("Sen với Boss Huề");
-//			}
-//		}
+
 		if (player instanceof Human) {
 			Board aH = getBoardState();
-			if (getPlayerID() == 1 && aH.boardArr[x][y] == 0) {
+			if (getPlayerID() == 1 && aH.boardArr[x][y] == 0) { //Kiem tra nuoc di hop le 
 				move(x, y, 1, a);
 				setPlayerID(2);
 				if (isOver(x, y) == 1) {
@@ -142,7 +118,7 @@ public class Controller {
 				}
 			} else {
 				Board aM = getBoardState();
-				if (getPlayerID() == 2 && aM.boardArr[x][y] == 0) {
+				if (getPlayerID() == 2 && aM.boardArr[x][y] == 0) {//Kiem tra nuoc di hop le
 					move(x, y, 2, a);
 					setPlayerID(1);
 				}
@@ -167,15 +143,15 @@ public class Controller {
 					setPlayerID(2);
 				}
 				if (playerWin.equals("1")) {
-					playerWin = "Sen";
+					playerWin = "Bạn";
 					dialog(playerWin + " Win!");
 				}
 				if (playerWin.equals("2")) {
-					playerWin = "Boss";
+					playerWin = "Máy";
 					dialog(playerWin + " Win!");
 				}
 				if (isOver(x, y) == 10) {
-					dialog("Sen với Boss Huề");
+					dialog("Bnạ với Máy Huề");
 				}
 			}
 			if (getPlayerID() == 2) {
@@ -183,15 +159,15 @@ public class Controller {
 				move(p.x, p.y, 2, a);
 				setPlayerID(1);
 				if (playerWin.equals("1")) {
-					playerWin = "Sen";
+					playerWin = "Bạn";
 					dialog(playerWin + " Win!");
 				}
 				if (playerWin.equals("2")) {
-					playerWin = "Boss";
+					playerWin = "Máy";
 					dialog(playerWin + " Win!");
 				}
 				if (isOver(x, y) == 10) {
-					dialog("Sen với Boss Huề");
+					dialog("Bạn với Máy Huề");
 				}
 			}
 			
@@ -200,7 +176,7 @@ public class Controller {
 		
 
 	}
-
+	// 
 	public void move(int x, int y, int player, Button[][] arrayButtonChess) {
 		getBoardState().setPosition(x, y, player);
 		if (player == 1) {
@@ -231,7 +207,7 @@ public class Controller {
 		}
 	}
 
-	// quay lại 1 nuoc co
+	// quay lại 1 nuoc co doi voi game hai nguoi
 	public void undo(Button[][] arrayButtonChess) {
 		if (!stack.isEmpty()) {
 			
@@ -254,7 +230,7 @@ public class Controller {
 			reset(arrayButtonChess);
 		}
 	}
-
+//quay lai doi voi che do danh  may
 	public void undoBoss(Button[][] arrayButtonChess) {
 		if (!stack.isEmpty()) {
 			for (int i = 0; i < 2; i++) {
@@ -284,7 +260,7 @@ public class Controller {
 
 		}
 	};
-
+//thong bao tro choi ket thuc
 	public void dialog(String title) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Trò chơi kết thúc");

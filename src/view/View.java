@@ -24,7 +24,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Board;
-import model.Bot;
+import model.Computer;
 import model.Human;
 
 public class View implements EventHandler<ActionEvent> {
@@ -38,7 +38,7 @@ public class View implements EventHandler<ActionEvent> {
 	private Button btnAbout;
 	private Button btnBoss;
 	private Board boardState;
-	private Bot boss;
+	private Computer boss;
 	// lop dieu khien
 	Controller controller;
 //	 mang quan co khi danh
@@ -100,11 +100,13 @@ public class View implements EventHandler<ActionEvent> {
 		AnchorPane anchorPaneLogo = new AnchorPane();
 		AnchorPane anchorPaneMenu = new AnchorPane();
 		// set logo
-		InputStream input = clazz.getResourceAsStream("/image/giabui1.jpg");
+		InputStream input = clazz.getResourceAsStream("/image/LOGONONGLAM.jpg");
 		Image image = new Image(input);
+		
 		ImageView imgView = new ImageView(image);
-		imgView.setFitHeight(260);
+		imgView.setFitHeight(280);
 		imgView.setFitWidth(260);
+		imgView.setId("btnImg");
 		AnchorPane.setTopAnchor(imgView, 10.0);
 		AnchorPane.setLeftAnchor(imgView, 30.0);
 		AnchorPane.setRightAnchor(imgView, 30.0);
@@ -247,9 +249,9 @@ public class View implements EventHandler<ActionEvent> {
 		controller.reset(arrayButtonChess);
 
 	}
-
+//che do danh voi may
 	public void replayBoss() {
-		controller.setPlayer(new Bot(new Board(WIDTH_BOARD, HEIGHT_BOARD)));
+		controller.setPlayer(new Computer(new Board(WIDTH_BOARD, HEIGHT_BOARD)));
 //		controller.setPlayerID(1);
 		controller.reset(arrayButtonChess);
 		gameMode();
@@ -260,7 +262,7 @@ public class View implements EventHandler<ActionEvent> {
 	public void aboutUs() {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Luật chơi");
-		alert.setHeaderText("Game được phát triển bởi Giabui");
+		alert.setHeaderText("Game được phát triển bởi nhóm 3 Mạnh and Gia");
 		alert.setContentText("Thắng là đc !");
 		alert.showAndWait();
 	}
